@@ -19,6 +19,7 @@ gem 'devise-bootstrap-views'
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
+  gem 'dotenv-rails'
 end
 
 group :development do
