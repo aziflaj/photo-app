@@ -1,10 +1,14 @@
+<script language="Javascript">
+  Stripe.setPublishableKey("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
+</script>
+
 <%= bootstrap_devise_error_messages! %>
 <div class="panel panel-default devise-bs">
   <div class="panel-heading">
     <h4><%= t('.sign_up', :default => "Sign up") %></h4>
   </div>
   <div class="panel-body">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form", class: "cc_form" }) do |f| %>
       <div class="form-group">
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, class: "form-control" %>
@@ -49,7 +53,7 @@
 
             <div class="col-md-3">
               <%= p.select :card_expires_year,
-                                options_for_select(Payment.year_options),
+                                options_for_select(Payment.year_options.push),
                                 {include_blank: 'Year'},
                                 data: {stripe: 'exp-year'},
                                 class: "form-control",
